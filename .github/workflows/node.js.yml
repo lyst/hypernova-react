@@ -15,16 +15,22 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x, 19.x, 20.x]
+        # Babel 8 requires Node ^22.18.0 || >=24.11.0.
+        node-version: [22.x, 24.x, 26.x]
+        react-version: [18, 19]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
       - run: npm ci
-      - run: npm run prepare
+      - name: Use React ${{ matrix.react-version }}
+        if: matrix.react-version != 19
+        run: npm install --no-save react@${{ matrix.react-version }} react-dom@${{ matrix.react-version }}
+      - run: npm run build
+      - run: npm run typecheck
       - run: npm test
