@@ -8,10 +8,12 @@
   "typings": "typings/index.d.ts",
   "scripts": {
     "test": "jest",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
     "prettier": "./node_modules/.bin/prettier . --write",
     "clean": "rm -rf lib",
     "build": "babel src -d lib",
-    "prepare": "npm run clean && npm run build"
+    "prepare": "npm run clean && npm run build",
+    "check": "npm run typecheck && npm test"
   },
   "repository": {
     "type": "git",

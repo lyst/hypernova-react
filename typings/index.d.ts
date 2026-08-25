@@ -1,9 +1,13 @@
-// Types for client
-// https://stackoverflow.com/questions/61056465/writing-types-for-a-function-with-a-different-signature-in-nodejs
-// export function renderReact<C extends React.ComponentType>(name: string, component: C): C;
+import type { ComponentProps, ComponentType } from "react";
 
-// Types for server
-export function renderReact<C extends React.ComponentType>(
+export type ServerRenderedComponent<C extends ComponentType<any>> = (
+  props: ComponentProps<C>
+) => string;
+
+// Typed for the server branch: hypernova's server() is what is evaluated
+// when the bundle renders HTML. On the client renderReact returns the
+// component itself, but the return value is not used there.
+export function renderReact<C extends ComponentType<any>>(
   name: string,
   component: C
-): (props: React.ComponentProps<C>) => string;
+): ServerRenderedComponent<C>;
