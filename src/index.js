@@ -1,3 +1,4 @@
+import "./environment";
 import React from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";
 import { renderToString } from "react-dom/server";
