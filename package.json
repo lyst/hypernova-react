@@ -1,17 +1,19 @@
 {
   "name": "@lyst/hypernova-react",
-  "version": "3.1.0",
-  "description": "React 18 bindings for Hypernova",
+  "version": "3.2.0",
+  "description": "React 18 & 19 bindings for Hypernova",
   "author": "Lyst",
   "license": "MIT",
   "main": "lib/index.js",
   "typings": "typings/index.d.ts",
   "scripts": {
     "test": "jest",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
     "prettier": "./node_modules/.bin/prettier . --write",
     "clean": "rm -rf lib",
     "build": "babel src -d lib",
-    "prepare": "npm run clean && npm run build"
+    "prepare": "npm run clean && npm run build",
+    "check": "npm run typecheck && npm test"
   },
   "repository": {
     "type": "git",
@@ -38,17 +40,26 @@
   "homepage": "https://github.com/lyst/hypernova-react#readme",
   "peerDependencies": {
     "hypernova": "^2.5.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^18.2.0 || ^19.0.0",
+    "react-dom": "^18.2.0 || ^19.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.21.0",
-    "babel-preset-airbnb": "^5.0.0",
+    "@babel/cli": "^8.0.6",
+    "@babel/core": "^8.0.7",
+    "@babel/preset-env": "^8.0.7",
+    "@babel/preset-react": "^8.0.1",
+    "@types/react": "^19.3.0",
     "hypernova": "^2.5.0",
-    "jest": "^29.5.0",
-    "prettier": "^2.8.7",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "typescript": "^5.0.3"
+    "jest": "^30.5.2",
+    "jest-environment-jsdom": "^30.5.2",
+    "prettier": "^3.9.10",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "typescript": "^7.0.2"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/tests/setup.js"
+    ]
   }
 }

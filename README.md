@@ -1,6 +1,6 @@
 # @lyst/hypernova-react
 
-[React](https://github.com/facebook/react) 18 bindings for [Hypernova](https://github.com/airbnb/hypernova).
+[React](https://github.com/facebook/react) 18 & 19 bindings for [Hypernova](https://github.com/airbnb/hypernova).
 
 Based on [hypernova-react](https://github.com/airbnb/hypernova-react).
 
@@ -19,11 +19,11 @@ npm install --save @lyst/hypernova-react
 Here's how to use it in your module:
 
 ```js
-import { renderReact } from '@lyst/hypernova-react';
-import MyComponent from './src/MyComponent.jsx';
+import { renderReact } from "@lyst/hypernova-react";
+import MyComponent from "./src/MyComponent.jsx";
 
 export default renderReact(
-  'MyComponent.hypernova.js', // this file's name (or really any unique name)
-  MyComponent,
+  "MyComponent.hypernova.js", // this file's name (or really any unique name)
+  MyComponent
 );
 ```

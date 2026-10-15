@@ -1,3 +1,4 @@
+import "./environment";
 import React from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";
 import { renderToString } from "react-dom/server";
@@ -20,7 +21,9 @@ export const renderReact = (name, component) =>
           const { node, data } = payload;
           const element = React.createElement(component, data);
 
-          if (hydrateRoot) {
+          // An empty container means there is no server markup to hydrate,
+          // e.g. Hypernova's fallback when the server render failed.
+          if (node.firstChild) {
             hydrateRoot(node, element);
           } else {
             createRoot(node).render(element);
